@@ -7,11 +7,13 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 // import { Soldier } from './soldier/entities/soldier.entity';
 // import { Commander } from './commander/entities/commander.entity';
 import { User } from './users/users.entity';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
     SoldierModule,
     CommanderModule,
+    AuthModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
       username: 'root',
@@ -21,6 +23,7 @@ import { User } from './users/users.entity';
       entities: [User],
       synchronize: true,
     }),
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,7 +1,17 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { SoldierService } from './soldier.service';
 import { CreateSoldierDto } from './dto/create-soldier.dto';
 import { UpdateSoldierDto } from './dto/update-soldier.dto';
+import { JwtAuthGuard } from '../auth/jwt/jwt.guard';
+import { UseGuards } from '@nestjs/common';
 
 @Controller('soldier')
 export class SoldierController {
@@ -18,6 +28,7 @@ export class SoldierController {
   }
 
   @Get(':id')
+  @UseGuards(JwtAuthGuard)
   async findOne(@Param('id') id: string) {
     return await this.soldierService.findOne(+id);
   }

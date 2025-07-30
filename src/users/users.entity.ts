@@ -1,15 +1,15 @@
-// src/soldier/soldier.entity.ts
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+// src/user/user.entity.ts
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from 'typeorm';
 
 @Entity()
-export class Soldier  {
+export class User extends BaseEntity{
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
   name: string;
 
-  @Column({ unique: true })
+  @Column()
   email: string;
 
   @Column()

@@ -7,19 +7,19 @@ import { UpdateSoldierDto } from './dto/update-soldier.dto';
 export class SoldierController {
   constructor(private readonly soldierService: SoldierService) {}
 
-  @Post()
+  @Post('create')
   create(@Body() createSoldierDto: CreateSoldierDto) {
     return this.soldierService.create(createSoldierDto);
   }
 
   @Get()
-  findAll() {
-    return this.soldierService.findAll();
+  async findAll() {
+    return await this.soldierService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.soldierService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    return await this.soldierService.findOne(+id);
   }
 
   @Patch(':id')

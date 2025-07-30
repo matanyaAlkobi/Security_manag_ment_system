@@ -23,6 +23,7 @@ export class SoldierController {
   }
 
   @Get()
+  @UseGuards(JwtAuthGuard)
   async findAll() {
     return await this.soldierService.findAll();
   }
@@ -33,13 +34,13 @@ export class SoldierController {
     return await this.soldierService.findOne(+id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateSoldierDto: UpdateSoldierDto) {
-    return this.soldierService.update(+id, updateSoldierDto);
-  }
+  // @Patch(':id')
+  // update(@Param('id') id: string, @Body() updateSoldierDto: UpdateSoldierDto) {
+  //   return this.soldierService.update(+id, updateSoldierDto);
+  // }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.soldierService.remove(+id);
-  }
+  // @Delete(':id')
+  // remove(@Param('id') id: string) {
+  //   return this.soldierService.remove(+id);
+  // }
 }

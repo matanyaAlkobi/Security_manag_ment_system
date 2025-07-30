@@ -9,14 +9,14 @@ export class JwtAuthGuard implements CanActivate {
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const req = context.switchToHttp().getRequest<Request>();
-    const authHeader = req.headers['authorization'];
+    const authHeader = req.headers.authorization;
 
     if (!authHeader) return false;
 
     const token = authHeader.replace('Bearer ', '');
     try {
-      const decoded = this.jwtService.verify(token, { secret: 'secretKey123' });
-      req['user'] = decoded;
+      const decoded = this.jwtService.verify(token);
+      req.user = decoded;
       return true;
     } catch {
       return false;

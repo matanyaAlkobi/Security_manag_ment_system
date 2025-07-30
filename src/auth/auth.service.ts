@@ -14,8 +14,8 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async validateUser(email: string, password: string): Promise<User> {
-    const user = await this.userRepository.findOne({ where: { email } });
+  async validateUser(name: string, password: string): Promise<User> {
+    const user = await this.userRepository.findOne({ where: { name } });
 
     if (!user) {
       throw new UnauthorizedException('User not found');
